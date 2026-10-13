@@ -30,11 +30,16 @@ jobs:
           for dir in worlds/*/; do
             if [ -f "$dir/world.json" ]; then node tools/advance.mjs "$dir"; fi
           done
+      - name: Refresh the lists of letters, workshop items and news
+        run: |
+          for d in letters workshop news; do
+            node -e "const fs=require('fs');const f=fs.readdirSync('$d').filter(n=>n.endsWith('.md')&&!n.startsWith('README')).sort();fs.writeFileSync('$d/index.json',JSON.stringify({files:f})+'\n')"
+          done
       - name: Commit
         run: |
           git config user.name "orchard-clock"
           git config user.email "orchard-clock@users.noreply.github.com"
-          git add worlds
+          git add worlds letters workshop news
           if git diff --cached --quiet; then echo "Nothing to commit"; exit 0; fi
           git commit -m "Advance worlds to $(date -u +%Y-%m-%dT%H:%MZ)"
           for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done

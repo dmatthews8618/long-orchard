@@ -11,6 +11,7 @@ import {
 } from '../engine/index.js';
 import { displaySnapshot, parseHistory, COLUMNS, pad, metricsRow, CSV_HEADER } from '../engine/records.js';
 import { DAYS_PER_SEASON } from '../engine/clock.js';
+import { renderNotebook } from './notebook.js';
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -561,6 +562,7 @@ function renderNow() {
   const named = w.trees.filter((x) => x.name);
   const suggestions = whatNext();
   $('page-now').innerHTML = `
+    <div id="news-for-dave"></div>
     <h2>${esc(t.season)}</h2>
     <p class="prose">${esc(SEASONS[t.seasonIndex].plain)}</p>
     <h2>Worth a look</h2>
@@ -587,6 +589,7 @@ function renderNow() {
     </dl>
     <p class="quiet">Animal numbers are estimates from local population groups, not counted individuals. Trees are individuals.</p>`;
   for (const b of $('page-now').querySelectorAll('[data-tree]')) b.onclick = () => openTree(b.dataset.tree);
+  renderNotebook();
 }
 const fig = (label, value, sub) => `<div><dt>${esc(label)}</dt><dd>${esc(value)} ${sub ? `<small>${esc(sub)}</small>` : ''}</dd></div>`;
 
@@ -727,7 +730,8 @@ function renderRecords() {
     <div class="chart-pick"><label>Show <select id="metric">${opts}</select></label></div>
     ${svg}
     <h2>Event record</h2>
-    <ul class="events">${evs.map(eventItem).join('') || '<li>Nothing recorded yet.</li>'}</ul>
+    <ul class="events">${evs.slice(0, 10).map(eventItem).join('') || '<li>Nothing recorded yet.</li>'}</ul>
+    ${evs.length > 10 ? `<details class="folded"><summary>${evs.length - 10} earlier events</summary><ul class="events">${evs.slice(10).map(eventItem).join('')}</ul></details>` : ''}
     <p class="quiet">This page shows the current and previous orchard year. Full records are in the repository under <code>${esc(state.worldDir)}/</code>.</p>`;
   $('metric').onchange = (e) => { chartKey = e.target.value; renderRecords(); };
 }

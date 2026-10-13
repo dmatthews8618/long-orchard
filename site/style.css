@@ -128,7 +128,7 @@ a { color: var(--focus); }
 .tabs { display: flex; border-bottom: 1px solid var(--rule); overflow-x: auto; }
 .tabs button {
   font: inherit;
-  padding: 0.65rem 1rem;
+  padding: 0.65rem 0.7rem;
   border: 0;
   border-bottom: 3px solid transparent;
   background: none;
@@ -193,3 +193,20 @@ table.facts td { font-variant-numeric: tabular-nums; }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* Folded letters, workshop items and news */
+.folded { border-bottom: 1px dotted var(--rule); padding: 0.4rem 0; }
+.folded > summary { cursor: pointer; list-style: none; font-family: var(--serif); line-height: 1.45; padding-left: 1.1rem; position: relative; }
+.folded > summary::-webkit-details-marker { display: none; }
+.folded > summary::before { content: '+'; position: absolute; left: 0; color: var(--ink-soft); font-family: var(--sans); }
+.folded[open] > summary::before { content: '\2212'; }
+.folded .when { font-family: var(--sans); font-size: var(--step--1); color: var(--ink-soft); }
+.folded .who { font-weight: 600; }
+.folded .title { font-style: italic; }
+.folded-body { padding: 0.4rem 0 0.2rem 1.1rem; }
+.folded-body .folded { margin-left: 0; }
+.status { font-family: var(--sans); font-size: var(--step--1); padding: 0 0.4rem; border: 1px solid var(--rule); border-radius: 999px; }
+.status-agreed, .status-in-progress { border-color: var(--leaf); color: var(--leaf-dark); }
+.status-done { background: var(--leaf-dark); color: var(--paper); border-color: var(--leaf-dark); }
+.status-declined { color: var(--ink-soft); text-decoration: line-through; }
+#news-for-dave .folded:first-of-type { border-left: 3px solid var(--amber); padding-left: 0.5rem; }
