@@ -1,0 +1,13 @@
+{
+  "name": "long-orchard",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The Long Orchard: a persistent simulated orchard for two visiting keepers",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "advance": "node tools/advance.mjs",
+    "validate": "node tools/validate.mjs"
+  },
+  "engines": { "node": ">=20" }
+}

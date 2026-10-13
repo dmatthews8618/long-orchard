@@ -1,0 +1,40 @@
+# Keeps every saved world current. Once a day GitHub runs the engine to
+# bring each world in worlds/ up to the present, then commits the result.
+# Keepers never commit world.json themselves, so visits cannot collide
+# with each other or with this job.
+name: Advance the orchard
+
+on:
+  schedule:
+    - cron: '43 5 * * *' # daily, 05:43 UTC
+  workflow_dispatch: {}
+
+concurrency:
+  group: advance-worlds
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  advance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Advance each world to now
+        run: |
+          for dir in worlds/*/; do
+            if [ -f "$dir/world.json" ]; then node tools/advance.mjs "$dir"; fi
+          done
+      - name: Commit
+        run: |
+          git config user.name "orchard-clock"
+          git config user.email "orchard-clock@users.noreply.github.com"
+          git add worlds
+          if git diff --cached --quiet; then echo "Nothing to commit"; exit 0; fi
+          git commit -m "Advance worlds to $(date -u +%Y-%m-%dT%H:%MZ)"
+          for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done

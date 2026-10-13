@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Long Orchard</title>
+  <meta name="description" content="A persistent simulated orchard kept by two visiting keepers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='14' r='10' fill='%235E7550'/%3E%3Crect x='15' y='20' width='2' height='9' fill='%233A2E22'/%3E%3Ccircle cx='12' cy='12' r='2' fill='%23C9963A'/%3E%3C/svg%3E">
+</head>
+<body>
+  <header class="masthead">
+    <div class="title-block">
+      <h1 id="world-name">The Long Orchard</h1>
+      <p class="clock" id="clock">Opening the record…</p>
+    </div>
+    <p class="persistence" id="persistence" role="status"></p>
+  </header>
+
+  <div class="test-world" id="test-banner" hidden>
+    This is a <strong>test world</strong> for checking the engine. It is not the shared orchard, which has not been founded yet.
+  </div>
+
+  <main class="layout">
+    <section class="map-pane" aria-label="Map of the orchard">
+      <div class="layer-bar" role="radiogroup" aria-label="Map layer" id="layers"></div>
+      <div class="map-frame">
+        <canvas id="map" tabindex="0" aria-label="Orchard map. Use arrow keys to move between patches; the notebook shows the selected patch."></canvas>
+        <div class="past-banner" id="past-banner" hidden></div>
+      </div>
+      <div class="map-foot">
+        <div class="legend" id="legend"></div>
+        <label class="time-slider">
+          <span>Season</span>
+          <input type="range" id="season-slider" min="0" max="0" value="0" aria-describedby="slider-label">
+          <span id="slider-label">now</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="notebook" aria-label="Field notebook">
+      <nav class="tabs" role="tablist">
+        <button role="tab" aria-selected="true" data-tab="now">Now</button>
+        <button role="tab" aria-selected="false" data-tab="patch">Patch</button>
+        <button role="tab" aria-selected="false" data-tab="records">Records</button>
+        <button role="tab" aria-selected="false" data-tab="how">How it works</button>
+      </nav>
+      <div class="page" id="page-now" role="tabpanel"></div>
+      <div class="page" id="page-patch" role="tabpanel" hidden></div>
+      <div class="page" id="page-records" role="tabpanel" hidden></div>
+      <div class="page" id="page-how" role="tabpanel" hidden></div>
+    </section>
+  </main>
+
+  <script type="module" src="site/app.js"></script>
+</body>
+</html>

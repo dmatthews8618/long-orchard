@@ -1,0 +1,21 @@
+{"type":"established","at":227,"refs":["T23"],"text":"Lantern Pear T23 established at (3,7).","id":"E4","step":370,"when":"Year 2, Thaw day 35"}
+{"type":"established","at":516,"refs":["T29"],"text":"Lantern Pear T29 established at (4,16).","id":"E5","step":374,"when":"Year 2, Thaw day 39"}
+{"type":"established","at":227,"refs":["T30"],"text":"Lantern Pear T30 established at (3,7).","id":"E6","step":375,"when":"Year 2, Thaw day 40"}
+{"type":"established","at":390,"refs":["T33"],"text":"Bellfruit T33 established at (6,12).","id":"E7","step":376,"when":"Year 2, Thaw day 41"}
+{"type":"established","at":227,"refs":["T36"],"text":"Lantern Pear T36 established at (3,7).","id":"E8","step":377,"when":"Year 2, Thaw day 42"}
+{"type":"established","at":516,"refs":["T49"],"text":"Lantern Pear T49 established at (4,16).","id":"E9","step":389,"when":"Year 2, Thaw day 54"}
+{"type":"established","at":200,"refs":["T50"],"text":"Lantern Pear T50 established at (8,6).","id":"E10","step":389,"when":"Year 2, Thaw day 54"}
+{"type":"established","at":227,"refs":["T51"],"text":"Lantern Pear T51 established at (3,7).","id":"E11","step":397,"when":"Year 2, Thaw day 62"}
+{"type":"established","at":390,"refs":["T54"],"text":"Bellfruit T54 established at (6,12).","id":"E12","step":400,"when":"Year 2, Thaw day 65"}
+{"type":"established","at":200,"refs":["T55"],"text":"Lantern Pear T55 established at (8,6).","id":"E13","step":400,"when":"Year 2, Thaw day 65"}
+{"type":"established","at":516,"refs":["T59"],"text":"Lantern Pear T59 established at (4,16).","id":"E14","step":401,"when":"Year 2, Thaw day 66"}
+{"type":"established","at":200,"refs":["T60"],"text":"Lantern Pear T60 established at (8,6).","id":"E15","step":402,"when":"Year 2, Thaw day 67"}
+{"type":"established","at":390,"refs":["T66"],"text":"Bellfruit T66 established at (6,12).","id":"E16","step":427,"when":"Year 2, Blossom day 8"}
+{"type":"established","at":200,"refs":["T63"],"text":"Lantern Pear T63 established at (8,6).","id":"E17","step":428,"when":"Year 2, Blossom day 9"}
+{"type":"weather","kind":"warmSpell","text":"Warm spell began (9 days).","id":"E18","step":462,"when":"Year 2, Blossom day 43"}
+{"type":"established","at":244,"refs":["T46"],"text":"Lantern Pear T46 established at (20,7).","id":"E19","step":463,"when":"Year 2, Blossom day 44"}
+{"type":"established","at":244,"refs":["T61"],"text":"Lantern Pear T61 established at (20,7).","id":"E20","step":464,"when":"Year 2, Blossom day 45"}
+{"type":"established","at":244,"refs":["T32"],"text":"Lantern Pear T32 established at (20,7).","id":"E21","step":468,"when":"Year 2, Blossom day 49"}
+{"type":"established","at":244,"refs":["T67"],"text":"Lantern Pear T67 established at (20,7).","id":"E22","step":493,"when":"Year 2, Blossom day 74"}
+{"type":"weather","kind":"drySpell","text":"Dry spell began (12 days).","id":"E23","step":540,"when":"Year 2, Fruitfall day 37"}
+{"type":"established","at":110,"refs":["T44"],"text":"Lantern Pear T44 established at (14,3).","id":"E24","step":546,"when":"Year 2, Fruitfall day 43"}
