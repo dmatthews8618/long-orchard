@@ -9,7 +9,7 @@
 // established, reached flowering), split by where the seed germinated and by
 // whether it came from founding stock or was produced in the orchard.
 import fs from 'node:fs';
-import { createWorld, advance, DAYS_PER_YEAR, crownRadius } from '../engine/index.js';
+import { createWorld, advance, DAYS_PER_YEAR, crownRadius, params } from '../engine/index.js';
 import { disc, W } from '../engine/landscape.js';
 
 const args = process.argv.slice(2);
@@ -17,6 +17,9 @@ const opt = (k, d) => { const i = args.indexOf(`--${k}`); return i >= 0 ? args[i
 const seed = Number(opt('seed', 101));
 const years = Number(opt('years', 140));
 const out = opt('json', null);
+params.MECHANISMS.forgottenCaches = args.includes('--caches');
+params.MECHANISMS.saplingBank = args.includes('--saplings');
+const condition = `${params.MECHANISMS.forgottenCaches ? 'caches' : ''}${params.MECHANISMS.forgottenCaches && params.MECHANISMS.saplingBank ? '+' : ''}${params.MECHANISMS.saplingBank ? 'saplings' : ''}` || 'neither';
 
 const w = createWorld({ seed, foundedAt: '2026-01-01T00:00:00Z', worldId: `rec-${seed}`, name: `recruitment ${seed}` });
 const LIVING = new Set(['juvenile', 'adult']);
@@ -62,8 +65,12 @@ w._observe = (type, p) => {
       sp: t.sp, site: siteOf(t.y * W + t.x, p.step), origin: (p.cohort.origin || '').startsWith('founding') ? 'founding stock' : 'orchard-born',
       route: p.cohort.disp, born: p.step, fate: 'alive', establishedAt: null, adultAt: null,
     });
+  } else if (type === 'released') {
+    const r = plants.get(p.tree.id);
+    if (r) r.releasedAt = p.step;
   } else if (type === 'death') {
     const r = plants.get(p.tree.id);
+    if (r) r.sup = p.tree.sup ? { ...p.tree.sup } : null;
     if (r && r.fate === 'alive') { r.fate = p.cause; r.diedAt = p.step; r.diedStage = p.tree.stage; }
     if (LIVING.has(p.tree.stage)) for (const c of disc(p.tree.x, p.tree.y, crownRadius(p.tree))) formerCrown.add(c.i);
   } else if (type === 'fell') {
@@ -100,6 +107,20 @@ for (let y = 1; y <= years; y++) {
   }
 }
 
+// Suppressed young trees: how long they waited, their carbon while waiting, what became of them
+for (const t of w.trees) { const r = plants.get(t.id); if (r && r.fate === 'alive') r.sup = t.sup ? { ...t.sup } : null; }
+const suppressed = {};
+for (const r of plants.values()) {
+  if (!r.sup || r.sup.days < DAYS_PER_YEAR / 2) continue;
+  const s0 = suppressed[r.sp] || (suppressed[r.sp] = { trees: 0, waitedYearPlus: 0, released: 0, releasedThenFlowered: 0, diedWaiting: 0, stillWaiting: 0, days: 0, P: 0, R: 0, flush: 0 });
+  s0.trees += 1;
+  if (r.sup.days >= DAYS_PER_YEAR) s0.waitedYearPlus += 1;
+  if (r.releasedAt) { s0.released += 1; if (r.adultAt) s0.releasedThenFlowered += 1; }
+  else if (r.fate === 'alive') s0.stillWaiting += 1;
+  else s0.diedWaiting += 1;
+  s0.days += r.sup.days; s0.P += r.sup.P; s0.R += r.sup.R; s0.flush += r.sup.flush;
+}
+
 // Seedling funnel by species, site and origin
 const funnel = {};
 for (const r of plants.values()) {
@@ -112,6 +133,6 @@ for (const r of plants.values()) {
   else if (r.establishedAt === null) { f.diedAsSeedling += 1; f.causes[r.fate] = (f.causes[r.fate] || 0) + 1; }
 }
 for (const v of Object.values(seedFunnel)) for (const k of Object.keys(v)) v[k] = Math.round(v[k]);
-const result = { seed, years, seconds: Math.round((Date.now() - t0) / 1000), seedFunnel, funnel, byDecade, finalTrees: w.trees.length };
+const result = { seed, condition, suppressed, years, seconds: Math.round((Date.now() - t0) / 1000), seedFunnel, funnel, byDecade, finalTrees: w.trees.length };
 if (out) fs.writeFileSync(out, JSON.stringify(result, null, 1));
 else console.log(JSON.stringify(result, null, 1));

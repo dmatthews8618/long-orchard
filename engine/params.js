@@ -11,7 +11,19 @@
 //
 // A patch is 3 m x 3 m of ground. The map is 32 x 24 patches (96 m x 72 m).
 
-export const ENGINE_VERSION = '0.1.1';
+export const ENGINE_VERSION = '0.2.0-dev';
+
+// Mechanisms under test before founding. Each can be switched on or off so
+// development worlds can be compared with and without it.
+export const MECHANISMS = {
+  // Each mouse cache gets a lasting chance of being forgotten when it is made.
+  // Forgotten caches are never dug up again; the rest are found as before.
+  forgottenCaches: false,
+  // Young trees in deep shade can wait in a suppressed state: shade tolerance
+  // lowers their upkeep and they carry smaller crowns, at the cost of slower
+  // growth and some extra risk of death. They grow on when light returns.
+  saplingBank: false,
+};
 
 export const MAP = { W: 32, H: 24, PATCH_M: 3 };
 
@@ -156,6 +168,13 @@ export const TREE_LIFE = {
   snagFallPerDay: 0.0015,
   windFallBase: 0.004, // per storm day for a large, sound, exposed tree
   weaknessGrowth: 0.00002, // per day once a tree is old
+  // Suppressed saplings (with saplingBank on). Suppression runs from 0 (half or
+  // more of open-sky light) to 1 (no light) for seedlings and young trees.
+  saplingBank: {
+    upkeepCut: 0.6, // upkeep falls by this x shade tolerance x suppression
+    leafCut: 0.4, // crowns shrink by this x suppression
+    hazard: 0.0004, // extra daily risk of death at full suppression (about 13% a year)
+  },
 };
 
 export const GROUND = {
@@ -224,6 +243,7 @@ export const ANIMALS = {
     capacityPerCover: 3.5,
     seedsHandledPerDay: 22,
     cacheShare: 0.65,
+    forgetShare: 0.22, // with forgottenCaches on: share of caches never recovered
     cacheRadius: 4,
     retrieveSeedsPerDay: 9,
     cacheFindShare: 0.009, // share of a cache found per day when a hungry mouse is nearby

@@ -17,7 +17,7 @@
 // so nothing outside this function can change what happens.
 
 import {
-  TREES, TRAITS, TREE_LIFE, WATER, NUTRIENTS, GROUND, DECAY, ANIMALS,
+  TREES, TRAITS, TREE_LIFE, WATER, NUTRIENTS, GROUND, DECAY, ANIMALS, MECHANISMS,
 } from './params.js';
 import { exp, pow, clamp, sat, q } from './dmath.js';
 import { streamFor } from './rng.js';
@@ -252,7 +252,7 @@ function stage4(c) {
 }
 
 function stage4a(c) {
-  const { doy, P, seed, wx, temp, living, layers, crown, groundLight, demand, waterRatio } = c;
+  const { doy, P, seed, wx, temp, living, phase, layers, crown, groundLight, demand, waterRatio } = c;
   // 4a. Potential production of every tree, and its nutrient demand.
   const nDemand = new Array(N).fill(0);
   const pot = new Map();
@@ -288,11 +288,18 @@ function stage4a(c) {
     const P0 = S.eps * epsMult * tr.leaf * selfEff * lr * ft * fw;
     const tc = clamp(temp[ti], -5, 25);
     const q10 = pow(2, (tc - 10) / 10);
-    const R = (S.maintWood * tr.wood * (1 + 0.25 * T.coldTol) + S.maintLeaf * tr.leaf) * q10;
+    let R = (S.maintWood * tr.wood * (1 + 0.25 * T.coldTol) + S.maintLeaf * tr.leaf) * q10;
+    // Sapling bank: a young tree in deep shade idles, paying less upkeep the more shade-tolerant it is
+    let sup = 0;
+    if (MECHANISMS.saplingBank && (tr.stage === 'seedling' || tr.stage === 'juvenile') && phase > 0) {
+      const lightFrac = (lr / Math.max((wx.light / (wx.light + half)) * (1 + half), 1e-9));
+      sup = clamp(1 - lightFrac / 0.5, 0, 1);
+      R *= 1 - TREE_LIFE.saplingBank.upkeepCut * T.shadeTol * sup;
+    }
     // Nutrients needed if this production became growth: wood content on the surplus
     const nd = Math.max(0, P0 - R) * NUTRIENTS.woodContent * 2;
     const lrOpen = (wx.light / (wx.light + half)) * (1 + half);
-    pot.set(tr.id, { P0, R, light, fw, ft, lr, lrOpen, shade });
+    pot.set(tr.id, { P0, R, light, fw, ft, lr, lrOpen, shade, sup });
     for (const c of cr.cells) nDemand[c.i] += nd / cr.cells.length;
   }
   // Ground plants: potential growth
@@ -355,13 +362,23 @@ function stage4b(c) {
     const reserveCap = S.reserveCap * tr.wood * (tr.stage === 'seedling' && step - tr.born < DAYS_PER_YEAR ? 3 : 1);
 
     // Leaves: flush in Thaw from reserves, fall in Fruitfall to litter
-    const target = leafTargetFull(tr) * phase;
+    const target = leafTargetFull(tr) * phase * (1 - TREE_LIFE.saplingBank.leafCut * p.sup);
+    // Book-keeping for suppressed young trees: time waiting, carbon in and out, release
+    if (MECHANISMS.saplingBank && (tr.stage === 'seedling' || tr.stage === 'juvenile')) {
+      const sp_ = tr.sup || (tr.sup = { days: 0, P: 0, R: 0, flush: 0, released: null });
+      if (p.sup > 0.2) { sp_.days += 1; sp_.P = q(sp_.P + p.P0 * (0.35 + 0.65 * nr)); sp_.R = q(sp_.R + p.R); }
+      else if (sp_.days >= DAYS_PER_YEAR && sp_.released === null && p.lr / Math.max(p.lrOpen, 1e-9) > 0.8 && phase > 0.5) {
+        sp_.released = step;
+        if (world._observe) world._observe('released', { tree: tr, step });
+      }
+    }
     if (tr.leaf < target) {
       const want = Math.min(target - tr.leaf, Math.max(0.02 * target, (target - tr.leaf) * 0.12));
       const afford = Math.max(0, tr.reserve + Math.max(net, 0));
       const grow = Math.min(want, afford);
       tr.leaf += grow;
       tr.reserve -= grow;
+      if (tr.sup && p.sup > 0.2) tr.sup.flush = q(tr.sup.flush + grow);
       takeNutrients(P, cr.cells, grow * NUTRIENTS.litterContent);
     } else if (tr.leaf > target) {
       const drop = target <= 0 ? tr.leaf : Math.min(tr.leaf - target, Math.max(0.03 * tr.leaf, (tr.leaf - target) * 0.15));
@@ -800,7 +817,7 @@ function takeNutrients(P, cells, amount) {
 // --- Seeds ------------------------------------------------------------------------
 
 function seedKey(c, year) {
-  return `${c.i}|${c.sp}|${c.mother}|${c.disp}|${c.buried ? 1 : 0}|${year}|${c.origin}`;
+  return `${c.i}|${c.sp}|${c.mother}|${c.disp}|${c.buried ? 1 : 0}|${year}|${c.origin}|${c.forgotten ? 1 : 0}`;
 }
 
 // Add seeds to the bank, merging with an existing cohort that shares place,
@@ -808,7 +825,7 @@ function seedKey(c, year) {
 export function addSeeds(world, step, s) {
   const year = Math.floor(step / DAYS_PER_YEAR);
   const origin = s.origin || 'orchard';
-  const probe = { i: s.i, sp: s.sp, mother: s.mother, disp: s.disp, buried: !!s.buried, origin };
+  const probe = { i: s.i, sp: s.sp, mother: s.mother, disp: s.disp, buried: !!s.buried, origin, forgotten: !!s.forgotten };
   if (!world._seedKeys || world._seedKeysStep !== step) {
     world._seedKeys = new Map();
     world._seedKeysStep = step;
@@ -833,6 +850,7 @@ export function addSeeds(world, step, s) {
   };
   if (s.traits) c.traits = s.traits;
   if (s.from) c.from = s.from;
+  if (s.forgotten) c.forgotten = true;
   world.seeds.push(c);
   world._seedKeys.set(key, c);
   return c;
@@ -1015,7 +1033,7 @@ function mergeCohorts(world) {
   // Fractions of a seed left in a patch are pooled into that patch's largest
   // cohort of the same species (their exact parentage is given up).
   // Founding stock is never pooled with seed made in the orchard, so its story stays its own.
-  const cls = (c) => ((c.origin || '').startsWith('founding') ? 'founding' : 'orchard');
+  const cls = (c) => `${(c.origin || '').startsWith('founding') ? 'founding' : 'orchard'}${c.forgotten ? '-forgotten' : ''}`;
   const largest = new Map();
   for (const c of world.seeds) {
     const key = `${c.i}|${c.sp}|${cls(c)}`;
@@ -1035,7 +1053,7 @@ function mergeCohorts(world) {
   const map = new Map();
   const out = [];
   for (const c of world.seeds) {
-    const key = [c.i, c.sp, c.mother, c.disp, c.buried, Math.floor(c.born / DAYS_PER_YEAR), c.origin].join('|');
+    const key = [c.i, c.sp, c.mother, c.disp, c.buried, Math.floor(c.born / DAYS_PER_YEAR), c.origin, !!c.forgotten].join('|');
     const hit = map.get(key);
     if (hit && c.origin !== 'founding') {
       hit.n += c.n;
@@ -1094,10 +1112,12 @@ function stepMice(world, step, doy, P, cover, seedIndex, tally) {
         const ws = area.map((a) => (cover[a.i] < 0.2 ? 0.02 : cover[a.i] * cover[a.i]) * kernel(a.d, 2) * (P.kind[a.i] === 'wall' ? 0 : 1));
         const k = rng.weighted(ws);
         if (k >= 0) {
+          // With forgottenCaches on, each cache's fate is set once, when it is made
+          const forgotten = MECHANISMS.forgottenCaches && rng.chance(M.forgetShare);
           addSeeds(world, step, {
             sp: c.sp, i: area[k].i, n: cached, mother: c.mother, fathers: scaleFathers(c.fathers, cached / Math.max(c.n + take, 1e-9)),
             disp: 'cached', buried: true, gen: c.gen, origin: c.origin === 'founding' ? 'founding-moved' : c.origin,
-            traits: c.traits, from: c.id,
+            traits: c.traits, from: c.id, forgotten,
           });
           tally.seedsCached += cached;
         }
@@ -1111,7 +1131,7 @@ function stepMice(world, step, doy, P, cover, seedIndex, tally) {
       for (const j of N8[i]) { const l = seedIndex.get(j); if (l) for (const c of l) reach.push(c); }
       for (const c of reach) {
         if (want <= 0) break;
-        if (!c.buried || c.n <= 0) continue;
+        if (!c.buried || c.n <= 0 || c.forgotten) continue;
         // Mice find their own caches more easily than seeds deep in the soil,
         // but only a share of a cache can be found on any day; the rest is forgotten for now
         const take = Math.min(c.n * (c.disp === 'cached' ? ANIMALS.mouse.cacheFindShare : ANIMALS.mouse.soilFindShare), want);
@@ -1310,16 +1330,18 @@ function stepTreeLife(world, step, t, P, temp, wx, crown, tally, events) {
       const hFr = temp[i] < -2 && tr.leaf > 0 ? TREE_LIFE.frostSeedlingHazard * S.frostSens * (1 - 0.7 * T.coldTol) * vul * (0.4 + P.exposure[i]) : 0;
       const hDr = tr.diag && tr.diag.water < 0.3 ? TREE_LIFE.droughtSeedlingHazard * (1 - 0.6 * T.droughtTol) * (1 - tr.diag.water / 0.3) : 0;
       const hSt = tr.starving ? 0.012 : 0;
-      hz = TREE_LIFE.seedlingHazard + hSn + hFr + hDr + hSt;
+      const hSup = MECHANISMS.saplingBank && tr.sup && tr.diag ? TREE_LIFE.saplingBank.hazard * clamp(1 - tr.diag.light / 0.5, 0, 1) : 0;
+      hz = TREE_LIFE.seedlingHazard + hSn + hFr + hDr + hSt + hSup;
       // One draw for the day. If the seedling dies, the cause is chosen in
       // proportion to each pressure, so the record says what actually killed it.
       parts = [['grazed by snails', hSn], ['frost', hFr], ['drought', hDr],
-        [tr.diag && tr.diag.water < tr.diag.light ? 'starved (drought)' : 'starved of light', hSt], ['other causes', TREE_LIFE.seedlingHazard]];
+        [tr.diag && tr.diag.water < tr.diag.light ? 'starved (drought)' : 'starved of light', hSt], ['other causes', TREE_LIFE.seedlingHazard], ['died suppressed in shade', hSup]];
     } else {
       const senesce = age > S.lifespanYears ? 0.0004 * (age - S.lifespanYears) / 10 : 0;
       const hSt = tr.starving ? TREE_LIFE.starveHazard * (1 + 3 * (1 - tr.cond)) : 0;
-      hz = TREE_LIFE.backgroundHazard + senesce + hSt + 0.002 * pow(1 - tr.cond, 4);
-      cause = senesce > hSt ? 'old age' : hSt > 0 ? 'exhausted reserves' : 'decline';
+      const hSup = MECHANISMS.saplingBank && tr.stage === 'juvenile' && tr.diag ? TREE_LIFE.saplingBank.hazard * clamp(1 - tr.diag.light / 0.5, 0, 1) : 0;
+      hz = TREE_LIFE.backgroundHazard + senesce + hSt + 0.002 * pow(1 - tr.cond, 4) + hSup;
+      cause = senesce > hSt ? 'old age' : hSt > 0 ? 'exhausted reserves' : hSup > 0.0001 ? 'died suppressed in shade' : 'decline';
     }
     if (rng.chance(hz)) {
       if (parts) {
