@@ -2,6 +2,8 @@
 
 Six development worlds (seeds 101 to 106), each run for 30 orchard years (30 real weeks of orchard time) on engine 0.1.0. None of these is the shared orchard; its seed will be drawn blind at founding and never run here. Regenerate with `node tools/validate.mjs --seeds 101,102,103,104,105,106 --years 30 --out docs/validation.md`.
 
+Note: these runs used engine 0.1.0. Engine 0.1.1 fixed a doubled frost draw for seedlings and kept founding stock separate when seed cohorts are pooled; see [recruitment.md](recruitment.md) for lifetime runs on 0.1.1, which change the Bellfruit conclusion below.
+
 ## What the runs show
 
 **Guarantees.** All ten engine tests pass: identical maths on every platform, identical history from the same seed, saving and loading changes nothing, catching up in pieces equals running straight through, inspecting changes nothing, stores stay finite and non-negative, traits stay in bounds, nutrients enter only through logged routes, and a world folder recovers from an interrupted save.

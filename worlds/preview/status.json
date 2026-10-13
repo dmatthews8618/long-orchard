@@ -2,12 +2,12 @@
   "worldId": "preview",
   "name": "Test orchard",
   "kind": "test",
-  "engineVersion": "0.1.0",
+  "engineVersion": "0.1.1",
   "foundedAt": "2026-09-29T19:00:00Z",
-  "step": 673,
-  "orchardTime": "Year 3, Thaw day 2",
-  "stateCoversUpTo": "2026-10-13T19:30:00.000Z",
-  "savedAt": "2026-10-13T19:54:24.357Z",
-  "snapshotId": "preview@673-948d62e77bac7897",
+  "step": 674,
+  "orchardTime": "Year 3, Thaw day 3",
+  "stateCoversUpTo": "2026-10-13T20:00:00.000Z",
+  "savedAt": "2026-10-13T20:17:26.309Z",
+  "snapshotId": "preview@674-216c5b538a836e53",
   "savedBy": "advance script"
 }

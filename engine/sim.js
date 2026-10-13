@@ -679,6 +679,7 @@ function stage6(c) {
     // Underfilled fruit carries fewer viable seeds
     const seeds = nFruit * (S.seedsPerFruit / tr.traits.seedSize) * clamp(fill * 1.2 - 0.2, 0, 1);
     r.seedsDropped += seeds;
+    if (world._observe) world._observe('seedsDropped', { sp: tr.sp, n: seeds, mother: tr.id, step });
     const cells = crown.get(tr.id).cells;
     const c = cells[fruitRng.int(cells.length)];
     P.fruit[c.i] += kg;
@@ -929,6 +930,7 @@ function stepSeeds(world, step, t, P, temp, groundLight, seedIndex, tally, event
     }
     // Losses: rot, decay, age. Seeds on the surface go faster than buried ones.
     const v = VDAY(S.seedLossPerYear) * (c.buried ? 1 : 2.2);
+    if (world._observe) world._observe('seedDecay', { sp: c.sp, n: c.n * v, origin: c.origin, step });
     c.n *= 1 - v;
     c.ready *= 1 - v;
     // Germination in Thaw and the first days of Blossom
@@ -956,6 +958,7 @@ function stepSeeds(world, step, t, P, temp, groundLight, seedIndex, tally, event
           const here = seedlingsAt.get(i) || 0;
           if (here >= TREE_LIFE.maxSeedlingsPerPatch || P.kind[i] === 'wall') {
             tally.germDied += 1; // germinated, then crowded out within days
+            if (world._observe) world._observe('crowded', { cohort: c, step });
             continue;
           }
           seedlingsAt.set(i, here + 1);
@@ -969,6 +972,7 @@ function stepSeeds(world, step, t, P, temp, groundLight, seedIndex, tally, event
           });
           tr.cohort = c.id;
           world._byId.set(tr.id, tr);
+          if (world._observe) world._observe('germinated', { tree: tr, cohort: c, step });
           if (!world.records.firstBirth) {
             world.records.firstBirth = tr.id;
             events.push({ type: 'first', at: i, refs: [tr.id, c.id], text: `First seedling born after the founding: ${speciesName(c.sp)} ${tr.id} at ${where(i)}, from seed cohort ${c.id}.` });
@@ -1010,15 +1014,17 @@ function stepSeeds(world, step, t, P, temp, groundLight, seedIndex, tally, event
 function mergeCohorts(world) {
   // Fractions of a seed left in a patch are pooled into that patch's largest
   // cohort of the same species (their exact parentage is given up).
+  // Founding stock is never pooled with seed made in the orchard, so its story stays its own.
+  const cls = (c) => ((c.origin || '').startsWith('founding') ? 'founding' : 'orchard');
   const largest = new Map();
   for (const c of world.seeds) {
-    const key = `${c.i}|${c.sp}`;
+    const key = `${c.i}|${c.sp}|${cls(c)}`;
     const l = largest.get(key);
     if (!l || c.n > l.n) largest.set(key, c);
   }
   const pooled = [];
   for (const c of world.seeds) {
-    const l = largest.get(`${c.i}|${c.sp}`);
+    const l = largest.get(`${c.i}|${c.sp}|${cls(c)}`);
     if (c !== l && c.n < 2 && c.origin !== 'founding') {
       l.n += c.n;
       l.ready += c.ready;
@@ -1081,6 +1087,7 @@ function stepMice(world, step, doy, P, cover, seedIndex, tally) {
       const eaten = take - cached;
       food += eaten * TREES[c.sp].seedFood;
       tally.seedsEaten += eaten;
+      if (world._observe) world._observe('seedEaten', { sp: c.sp, n: eaten, origin: c.origin, step });
       if (cached > 0) {
         // Carry to a covered spot nearby; bare ground is avoided
         const area = disc(i % W, Math.floor(i / W), M.cacheRadius);
@@ -1113,6 +1120,7 @@ function stepMice(world, step, doy, P, cover, seedIndex, tally) {
         want -= take;
         food += take * TREES[c.sp].seedFood;
         tally.seedsEaten += take;
+        if (world._observe) world._observe('seedEaten', { sp: c.sp, n: take, origin: c.origin, step });
       }
     }
     // Clover leaves when still hungry
@@ -1293,6 +1301,7 @@ function stepTreeLife(world, step, t, P, temp, wx, crown, tally, events) {
     // Hazards
     let hz;
     let cause = 'decline';
+    let parts = null;
     if (tr.stage === 'seedling') {
       const vul = 1 / (1 + tr.wood / 0.15); // bigger seedlings are much less vulnerable
       const sn = P.snail[i];
@@ -1302,15 +1311,10 @@ function stepTreeLife(world, step, t, P, temp, wx, crown, tally, events) {
       const hDr = tr.diag && tr.diag.water < 0.3 ? TREE_LIFE.droughtSeedlingHazard * (1 - 0.6 * T.droughtTol) * (1 - tr.diag.water / 0.3) : 0;
       const hSt = tr.starving ? 0.012 : 0;
       hz = TREE_LIFE.seedlingHazard + hSn + hFr + hDr + hSt;
-      const parts = [['grazed by snails', hSn], ['frost', hFr], ['drought', hDr], ['starved of light', hSt]];
-      parts.sort((a, b) => b[1] - a[1]);
-      if (parts[0][1] > TREE_LIFE.seedlingHazard) cause = parts[0][0];
-      if (tr.starving && cause === 'starved of light' && tr.diag && tr.diag.water < tr.diag.light) cause = 'starved (drought)';
-      if (hFr > 0 && rng.chance(hz)) {
-        tally.seedlingsFrosted += 1;
-        killTree(world, step, tr, 'frost', P, events, removed);
-        continue;
-      }
+      // One draw for the day. If the seedling dies, the cause is chosen in
+      // proportion to each pressure, so the record says what actually killed it.
+      parts = [['grazed by snails', hSn], ['frost', hFr], ['drought', hDr],
+        [tr.diag && tr.diag.water < tr.diag.light ? 'starved (drought)' : 'starved of light', hSt], ['other causes', TREE_LIFE.seedlingHazard]];
     } else {
       const senesce = age > S.lifespanYears ? 0.0004 * (age - S.lifespanYears) / 10 : 0;
       const hSt = tr.starving ? TREE_LIFE.starveHazard * (1 + 3 * (1 - tr.cond)) : 0;
@@ -1318,6 +1322,11 @@ function stepTreeLife(world, step, t, P, temp, wx, crown, tally, events) {
       cause = senesce > hSt ? 'old age' : hSt > 0 ? 'exhausted reserves' : 'decline';
     }
     if (rng.chance(hz)) {
+      if (parts) {
+        const k = rng.weighted(parts.map((x) => x[1]));
+        cause = parts[k < 0 ? parts.length - 1 : k][0];
+        if (cause === 'frost') tally.seedlingsFrosted += 1;
+      }
       if (tr.stage === 'seedling') tally.seedlingDeaths += 1;
       killTree(world, step, tr, cause, P, events, removed);
       continue;
@@ -1336,6 +1345,7 @@ function stepTreeLife(world, step, t, P, temp, wx, crown, tally, events) {
     if (tr.stage === 'seedling' && step - tr.born >= DAYS_PER_YEAR && tr.wood >= S.juvenileMass) {
       tr.stage = 'juvenile';
       tr.established = step;
+      if (world._observe) world._observe('established', { tree: tr, step });
       const pl = world.patches.place[i];
       const placeName = pl >= 0 ? PLACES[pl].name : null;
       events.push({
@@ -1353,6 +1363,7 @@ function stepTreeLife(world, step, t, P, temp, wx, crown, tally, events) {
     }
     if (tr.stage === 'juvenile' && age >= T.firstReproYears && tr.wood >= S.minReproMass * T.matureSize) {
       tr.stage = 'adult';
+      if (world._observe) world._observe('adult', { tree: tr, step });
       if (tr.origin !== 'founding') {
         events.push({ type: 'maturity', at: i, refs: [tr.id], text: `${speciesName(tr.sp)} ${nameOf(world, tr.id)}, born after the founding, is now old enough and large enough to flower.` });
       }
@@ -1374,7 +1385,7 @@ function stepTreeLife(world, step, t, P, temp, wx, crown, tally, events) {
 }
 
 function killTree(world, step, tr, cause, P, events, removed) {
-  if (world._onDeath) world._onDeath(tr, cause);
+  if (world._observe) world._observe('death', { tree: tr, cause, step });
   const i = idx(tr.x, tr.y);
   tr.death = { step, cause };
   if (tr.stage === 'seedling' && !tr.name) {
@@ -1395,6 +1406,7 @@ function fellTree(world, step, tr, P, rng, events, cause, wx) {
   const notable = tr.name || tr.wood >= 5;
   const wasAlive = LIVING.has(tr.stage);
   if (wasAlive) tr.death = { step, cause };
+  if (world._observe) world._observe('fell', { tree: tr, wasAlive, cause, step });
   const h = treeHeight(tr);
   const len = Math.max(1, Math.round(h / 3));
   // Fall downwind: mostly towards the east and south-east, sometimes elsewhere

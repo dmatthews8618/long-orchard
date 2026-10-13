@@ -141,3 +141,14 @@ test('a world folder advances to the present and recovers from an interrupted ru
   advance(mem, 130);
   assert.equal(serialise(loadWorld(dir)), serialise(mem));
 });
+
+test('watching recruitment through the observer changes nothing', () => {
+  const a = make(81);
+  const b = make(81);
+  let seen = 0;
+  b._observe = () => { seen++; };
+  advance(a, 400);
+  advance(b, 400);
+  assert.ok(seen > 0);
+  assert.equal(serialise(a), serialise(b));
+});

@@ -11,7 +11,7 @@
 //
 // A patch is 3 m x 3 m of ground. The map is 32 x 24 patches (96 m x 72 m).
 
-export const ENGINE_VERSION = '0.1.0';
+export const ENGINE_VERSION = '0.1.1';
 
 export const MAP = { W: 32, H: 24, PATCH_M: 3 };
 
