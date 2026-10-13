@@ -19,7 +19,8 @@ const years = Number(opt('years', 140));
 const out = opt('json', null);
 params.MECHANISMS.forgottenCaches = args.includes('--caches');
 params.MECHANISMS.saplingBank = args.includes('--saplings');
-const condition = `${params.MECHANISMS.forgottenCaches ? 'caches' : ''}${params.MECHANISMS.forgottenCaches && params.MECHANISMS.saplingBank ? '+' : ''}${params.MECHANISMS.saplingBank ? 'saplings' : ''}` || 'neither';
+if (opt('forget', null) !== null) params.ANIMALS.mouse.forgetShare = Number(opt('forget'));
+const condition = `${params.MECHANISMS.forgottenCaches ? `caches ${Math.round(params.ANIMALS.mouse.forgetShare * 100)}%` : ''}${params.MECHANISMS.forgottenCaches && params.MECHANISMS.saplingBank ? '+' : ''}${params.MECHANISMS.saplingBank ? 'saplings' : ''}` || 'neither';
 
 const w = createWorld({ seed, foundedAt: '2026-01-01T00:00:00Z', worldId: `rec-${seed}`, name: `recruitment ${seed}` });
 const LIVING = new Set(['juvenile', 'adult']);

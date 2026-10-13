@@ -5,8 +5,9 @@ import fs from 'node:fs';
 
 const [outFile, ...files] = process.argv.slice(2);
 const runs = files.map((f) => JSON.parse(fs.readFileSync(f, 'utf8')));
-const CONDS = ['neither', 'caches', 'saplings', 'caches+saplings'];
-const LABEL = { neither: 'Neither (engine as before)', caches: 'Forgotten caches only', saplings: 'Sapling bank only', 'caches+saplings': 'Both' };
+const LABEL = { neither: 'Neither (engine as before)', caches: 'Forgotten caches 22%', 'caches 22%': 'Forgotten caches only (22%)', saplings: 'Sapling bank only', 'caches+saplings': 'Forgotten caches 22% + sapling bank', 'caches 22%+saplings': 'Both (22% forgotten)' };
+const CONDS = [...new Set(runs.map((r) => r.condition))].sort((a, b) => (a === 'neither' ? -1 : b === 'neither' ? 1 : a.localeCompare(b, 'en', { numeric: true })));
+for (const c of CONDS) if (!LABEL[c]) LABEL[c] = c.startsWith('caches') ? `Forgotten caches ${c.slice(7)}` : c;
 const seeds = [...new Set(runs.map((r) => r.seed))].sort();
 const get = (seed, cond) => runs.find((r) => r.seed === seed && r.condition === cond);
 const at = (r, year) => r.byDecade.find((d) => d.year === year) || r.byDecade[r.byDecade.length - 1];
@@ -99,7 +100,7 @@ L.push('Young trees that spent at least half a year suppressed. Carbon is summed
 L.push('');
 L.push('| Condition | Species | Suppressed trees | Waited a year or more | Died waiting | Released | Released, then flowered | Still waiting at end | Net carbon while waiting (kg per tree-year) |');
 L.push('|---|---|---|---|---|---|---|---|---|');
-for (const c of ['saplings', 'caches+saplings']) {
+for (const c of CONDS.filter((x) => x.includes('saplings'))) {
   for (const sp of ['bellfruit', 'lantern']) {
     const a = { trees: 0, waitedYearPlus: 0, released: 0, releasedThenFlowered: 0, diedWaiting: 0, stillWaiting: 0, days: 0, P: 0, R: 0, flush: 0 };
     for (const s of seeds) {
