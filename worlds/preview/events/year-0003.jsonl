@@ -1,1 +1,2 @@
 {"type":"weather","kind":"drySpell","text":"Dry spell began (15 days).","id":"E26","step":674,"when":"Year 3, Thaw day 3"}
+{"type":"weather","kind":"longRain","text":"Prolonged rain began (10 days).","id":"E27","step":749,"when":"Year 3, Thaw day 78"}
