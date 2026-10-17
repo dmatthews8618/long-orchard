@@ -4,3 +4,10 @@
 {"type":"damage","kind":"lateFrost","text":"The late frost ended: 244 open flowers killed by frost; 13 seedlings killed by frost.","id":"E29","step":776,"when":"Year 3, Blossom day 21"}
 {"type":"established","at":516,"refs":["T174"],"text":"Lantern Pear T174 established at (4,16).","id":"E30","step":787,"when":"Year 3, Blossom day 32"}
 {"type":"established","at":516,"refs":["T131"],"text":"Lantern Pear T131 established at (4,16).","id":"E31","step":794,"when":"Year 3, Blossom day 39"}
+{"type":"established","at":449,"refs":["T142","T9"],"text":"Bellfruit T142 established at (1,14); mother Wallkeeper.","id":"E32","step":801,"when":"Year 3, Blossom day 46"}
+{"type":"established","at":257,"refs":["T87","T19"],"text":"Lantern Pear T87 established at (1,8); mother T19.","id":"E33","step":829,"when":"Year 3, Blossom day 74"}
+{"type":"established","at":385,"refs":["T146","T9"],"text":"Bellfruit T146 established at (1,12); mother Wallkeeper.","id":"E34","step":829,"when":"Year 3, Blossom day 74"}
+{"type":"established","at":194,"refs":["T133","T18"],"text":"Lantern Pear T133 established at (2,6); mother T18.","id":"E35","step":834,"when":"Year 3, Blossom day 79"}
+{"type":"established","at":258,"refs":["T169","T19"],"text":"Lantern Pear T169 established at (2,8); mother T19.","id":"E36","step":835,"when":"Year 3, Blossom day 80"}
+{"type":"established","at":289,"refs":["T114","T19"],"text":"Lantern Pear T114 established at (1,9); mother T19.","id":"E37","step":840,"when":"Year 3, Fruitfall day 1"}
+{"type":"established","at":323,"refs":["T162","T19"],"text":"Lantern Pear T162 established at (3,10); mother T19.","id":"E38","step":841,"when":"Year 3, Fruitfall day 2"}
