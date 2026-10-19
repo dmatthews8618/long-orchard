@@ -34,3 +34,6 @@
 {"type":"established","at":161,"refs":["T104","T18"],"text":"Lantern Pear T104 established at (1,5); mother T18.","id":"E59","step":885,"when":"Year 3, Fruitfall day 46"}
 {"type":"established","at":257,"refs":["T90","T19"],"text":"Lantern Pear T90 established at (1,8); mother T19.","id":"E60","step":891,"when":"Year 3, Fruitfall day 52"}
 {"type":"established","at":290,"refs":["T198","T19"],"text":"Lantern Pear T198 established at (2,9); mother T19.","id":"E61","step":892,"when":"Year 3, Fruitfall day 53"}
+{"type":"established","at":194,"refs":["T70","T18"],"text":"Lantern Pear T70 established at (2,6); mother T18.","id":"E62","step":894,"when":"Year 3, Fruitfall day 55"}
+{"type":"established","at":195,"refs":["T216","T18"],"text":"Lantern Pear T216 established at (3,6); mother T18.","id":"E63","step":905,"when":"Year 3, Fruitfall day 66"}
+{"type":"established","at":171,"refs":["T68"],"text":"Lantern Pear T68 established at (11,5).","id":"E64","step":906,"when":"Year 3, Fruitfall day 67"}
