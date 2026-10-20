@@ -37,3 +37,4 @@
 {"type":"established","at":194,"refs":["T70","T18"],"text":"Lantern Pear T70 established at (2,6); mother T18.","id":"E62","step":894,"when":"Year 3, Fruitfall day 55"}
 {"type":"established","at":195,"refs":["T216","T18"],"text":"Lantern Pear T216 established at (3,6); mother T18.","id":"E63","step":905,"when":"Year 3, Fruitfall day 66"}
 {"type":"established","at":171,"refs":["T68"],"text":"Lantern Pear T68 established at (11,5).","id":"E64","step":906,"when":"Year 3, Fruitfall day 67"}
+{"type":"weather","kind":"longRain","text":"Prolonged rain began (11 days).","id":"E65","step":944,"when":"Year 3, Still day 21"}
