@@ -1,2 +1,5 @@
 {"type":"weather","kind":"warmSpell","text":"Warm spell began (9 days).","id":"E67","step":1023,"when":"Year 4, Thaw day 16"}
 {"type":"cohort","at":171,"refs":["S9"],"text":"Founding seed cohort S9 (Lantern Pear, (11,5)) has no viable seeds left.","id":"E68","step":1035,"when":"Year 4, Thaw day 28"}
+{"type":"dormancy","at":194,"refs":["S99","T18"],"text":"Lantern Pear seeds from T18 began germinating at (2,6) after 2 winters underground (cohort S99).","id":"E69","step":1106,"when":"Year 4, Blossom day 15"}
+{"type":"weather","kind":"lateFrost","text":"Late frost began (3 days).","id":"E70","step":1117,"when":"Year 4, Blossom day 26"}
+{"type":"damage","kind":"lateFrost","text":"The late frost ended: 192 open flowers killed by frost; 10 seedlings killed by frost.","id":"E71","step":1119,"when":"Year 4, Blossom day 28"}
