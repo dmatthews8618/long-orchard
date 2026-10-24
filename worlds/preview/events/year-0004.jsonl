@@ -3,3 +3,7 @@
 {"type":"dormancy","at":194,"refs":["S99","T18"],"text":"Lantern Pear seeds from T18 began germinating at (2,6) after 2 winters underground (cohort S99).","id":"E69","step":1106,"when":"Year 4, Blossom day 15"}
 {"type":"weather","kind":"lateFrost","text":"Late frost began (3 days).","id":"E70","step":1117,"when":"Year 4, Blossom day 26"}
 {"type":"damage","kind":"lateFrost","text":"The late frost ended: 192 open flowers killed by frost; 10 seedlings killed by frost.","id":"E71","step":1119,"when":"Year 4, Blossom day 28"}
+{"type":"weather","kind":"drySpell","text":"Dry spell began (11 days).","id":"E72","step":1141,"when":"Year 4, Blossom day 50"}
+{"type":"established","at":322,"refs":["T219","T19"],"text":"Lantern Pear T219 established at (2,10); mother T19.","id":"E73","step":1167,"when":"Year 4, Blossom day 76"}
+{"type":"established","at":163,"refs":["T170","T18"],"text":"Lantern Pear T170 established at (3,5); mother T18.","id":"E74","step":1173,"when":"Year 4, Blossom day 82"}
+{"type":"established","at":259,"refs":["T176","T19"],"text":"Lantern Pear T176 established at (3,8); mother T19.","id":"E75","step":1174,"when":"Year 4, Blossom day 83"}
