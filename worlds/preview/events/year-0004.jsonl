@@ -7,3 +7,11 @@
 {"type":"established","at":322,"refs":["T219","T19"],"text":"Lantern Pear T219 established at (2,10); mother T19.","id":"E73","step":1167,"when":"Year 4, Blossom day 76"}
 {"type":"established","at":163,"refs":["T170","T18"],"text":"Lantern Pear T170 established at (3,5); mother T18.","id":"E74","step":1173,"when":"Year 4, Blossom day 82"}
 {"type":"established","at":259,"refs":["T176","T19"],"text":"Lantern Pear T176 established at (3,8); mother T19.","id":"E75","step":1174,"when":"Year 4, Blossom day 83"}
+{"type":"established","at":193,"refs":["T91","T18"],"text":"Lantern Pear T91 established at (1,6); mother T18.","id":"E76","step":1181,"when":"Year 4, Fruitfall day 6"}
+{"type":"established","at":161,"refs":["T92","T18"],"text":"Lantern Pear T92 established at (1,5); mother T18.","id":"E77","step":1182,"when":"Year 4, Fruitfall day 7"}
+{"type":"weather","kind":"drySpell","text":"Dry spell began (17 days).","id":"E78","step":1189,"when":"Year 4, Fruitfall day 14"}
+{"type":"established","at":612,"refs":["T186","T20"],"text":"Lantern Pear T186 established at (4,19); mother T20.","id":"E79","step":1196,"when":"Year 4, Fruitfall day 21"}
+{"type":"established","at":130,"refs":["T113","T18"],"text":"Lantern Pear T113 established at (2,4); mother T18.","id":"E80","step":1209,"when":"Year 4, Fruitfall day 34"}
+{"type":"established","at":291,"refs":["T215","T19"],"text":"Lantern Pear T215 established at (3,9); mother T19.","id":"E81","step":1209,"when":"Year 4, Fruitfall day 34"}
+{"type":"established","at":129,"refs":["T80","T18"],"text":"Lantern Pear T80 established at (1,4); mother T18.","id":"E82","step":1212,"when":"Year 4, Fruitfall day 37"}
+{"type":"established","at":166,"refs":["T184","T16"],"text":"Lantern Pear T184 established at (6,5); mother T16.","id":"E83","step":1228,"when":"Year 4, Fruitfall day 53"}
