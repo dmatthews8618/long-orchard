@@ -15,3 +15,9 @@
 {"type":"established","at":291,"refs":["T215","T19"],"text":"Lantern Pear T215 established at (3,9); mother T19.","id":"E81","step":1209,"when":"Year 4, Fruitfall day 34"}
 {"type":"established","at":129,"refs":["T80","T18"],"text":"Lantern Pear T80 established at (1,4); mother T18.","id":"E82","step":1212,"when":"Year 4, Fruitfall day 37"}
 {"type":"established","at":166,"refs":["T184","T16"],"text":"Lantern Pear T184 established at (6,5); mother T16.","id":"E83","step":1228,"when":"Year 4, Fruitfall day 53"}
+{"type":"established","at":130,"refs":["T147","T18"],"text":"Lantern Pear T147 established at (2,4); mother T18.","id":"E84","step":1233,"when":"Year 4, Fruitfall day 58"}
+{"type":"weather","kind":"drySpell","text":"Dry spell began (20 days).","id":"E85","step":1245,"when":"Year 4, Fruitfall day 70"}
+{"type":"established","at":366,"refs":["T246","T5"],"text":"Bellfruit T246 established at (14,11); mother T5.","id":"E86","step":1247,"when":"Year 4, Fruitfall day 72"}
+{"type":"established","at":131,"refs":["T182","T18"],"text":"Lantern Pear T182 established at (3,4); mother T18.","id":"E87","step":1253,"when":"Year 4, Fruitfall day 78"}
+{"type":"cohort","at":244,"refs":["S14"],"text":"Founding seed cohort S14 (Lantern Pear, (20,7)) has no viable seeds left.","id":"E88","step":1254,"when":"Year 4, Fruitfall day 79"}
+{"type":"weather","kind":"longRain","text":"Prolonged rain began (9 days).","id":"E89","step":1268,"when":"Year 4, Still day 9"}
