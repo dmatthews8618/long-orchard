@@ -10,3 +10,4 @@
 {"type":"weather","kind":"warmSpell","text":"Warm spell began (4 days).","id":"E100","step":1501,"when":"Year 5, Blossom day 74"}
 {"type":"cohort","at":516,"refs":["S12"],"text":"Founding seed cohort S12 (Lantern Pear, (4,16)) has no viable seeds left.","id":"E101","step":1511,"when":"Year 5, Blossom day 84"}
 {"type":"established","at":193,"refs":["T227","T18"],"text":"Lantern Pear T227 established at (1,6); mother T18.","id":"E102","step":1564,"when":"Year 5, Fruitfall day 53"}
+{"type":"low","text":"Mossback Snail had a lean year: peak 301 against 1303 the year before.","id":"E103","step":1679,"when":"Year 5, Still day 84"}
