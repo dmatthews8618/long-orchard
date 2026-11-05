@@ -1,2 +1,11 @@
 {"type":"dormancy","at":304,"refs":["S2424","T3"],"text":"Bellfruit seeds from T3 began germinating at (16,9) after 3 winters underground (cohort S2424).","id":"E104","step":1705,"when":"Year 6, Thaw day 26"}
 {"type":"dormancy","at":303,"refs":["S2848","T2"],"text":"Bellfruit seeds from T2 began germinating at (15,9) after 3 winters underground (cohort S2848).","id":"E105","step":1705,"when":"Year 6, Thaw day 26"}
+{"type":"weather","kind":"longRain","text":"Prolonged rain began (9 days).","id":"E106","step":1719,"when":"Year 6, Thaw day 40"}
+{"type":"dormancy","at":366,"refs":["S4184","T5"],"text":"Bellfruit seeds from T5 began germinating at (14,11) after 2 winters underground (cohort S4184).","id":"E107","step":1742,"when":"Year 6, Thaw day 63"}
+{"type":"dormancy","at":271,"refs":["S2276","T2"],"text":"Bellfruit seeds from T2 began germinating at (15,8) after 3 winters underground (cohort S2276).","id":"E108","step":1747,"when":"Year 6, Thaw day 68"}
+{"type":"cohort","at":437,"refs":["S5"],"text":"Founding seed cohort S5 (Bellfruit, (21,13)) has no viable seeds left.","id":"E109","step":1749,"when":"Year 6, Thaw day 70"}
+{"type":"cohort","at":408,"refs":["S6"],"text":"Founding seed cohort S6 (Bellfruit, (24,12)) has no viable seeds left.","id":"E110","step":1752,"when":"Year 6, Thaw day 73"}
+{"type":"dormancy","at":274,"refs":["S4650","T3"],"text":"Bellfruit seeds from T3 began germinating at (18,8) after 2 winters underground (cohort S4650).","id":"E111","step":1757,"when":"Year 6, Thaw day 78"}
+{"type":"dormancy","at":610,"refs":["S3510","T20"],"text":"Lantern Pear seeds from T20 began germinating at (2,19) after 2 winters underground (cohort S3510).","id":"E112","step":1758,"when":"Year 6, Thaw day 79"}
+{"type":"dormancy","at":304,"refs":["S4109","T2"],"text":"Bellfruit seeds from T2 began germinating at (16,9) after 2 winters underground (cohort S4109).","id":"E113","step":1760,"when":"Year 6, Thaw day 81"}
+{"type":"dormancy","at":337,"refs":["S2898","T2"],"text":"Bellfruit seeds from T2 began germinating at (17,10) after 3 winters underground (cohort S2898).","id":"E114","step":1762,"when":"Year 6, Thaw day 83"}
