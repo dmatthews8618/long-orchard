@@ -9,3 +9,6 @@
 {"type":"dormancy","at":610,"refs":["S3510","T20"],"text":"Lantern Pear seeds from T20 began germinating at (2,19) after 2 winters underground (cohort S3510).","id":"E112","step":1758,"when":"Year 6, Thaw day 79"}
 {"type":"dormancy","at":304,"refs":["S4109","T2"],"text":"Bellfruit seeds from T2 began germinating at (16,9) after 2 winters underground (cohort S4109).","id":"E113","step":1760,"when":"Year 6, Thaw day 81"}
 {"type":"dormancy","at":337,"refs":["S2898","T2"],"text":"Bellfruit seeds from T2 began germinating at (17,10) after 3 winters underground (cohort S2898).","id":"E114","step":1762,"when":"Year 6, Thaw day 83"}
+{"type":"dormancy","at":398,"refs":["S3330","T5"],"text":"Bellfruit seeds from T5 began germinating at (14,12) after 3 winters underground (cohort S3330).","id":"E115","step":1769,"when":"Year 6, Blossom day 6"}
+{"type":"dormancy","at":273,"refs":["S4301","T2"],"text":"Bellfruit seeds from T2 began germinating at (17,8) after 2 winters underground (cohort S4301).","id":"E116","step":1774,"when":"Year 6, Blossom day 11"}
+{"type":"dormancy","at":367,"refs":["S2376","T5"],"text":"Bellfruit seeds from T5 began germinating at (15,11) after 3 winters underground (cohort S2376).","id":"E117","step":1775,"when":"Year 6, Blossom day 12"}
