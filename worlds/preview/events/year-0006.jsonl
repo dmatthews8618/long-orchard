@@ -25,3 +25,15 @@
 {"type":"established","at":197,"refs":["T576","T21"],"text":"Lantern Pear T576 established at (5,6); mother T21.","id":"E128","step":1901,"when":"Year 6, Fruitfall day 54"}
 {"type":"established","at":48,"refs":["T316","T15"],"text":"Lantern Pear T316 established at (16,1); mother T15.","id":"E129","step":1903,"when":"Year 6, Fruitfall day 56"}
 {"type":"fall","at":390,"cells":[390,391],"refs":["T53"],"text":"Bellfruit T53 fell; 4 kg of wood now lies across 2 patches from (6,12).","id":"E130","step":1904,"when":"Year 6, Fruitfall day 57"}
+{"type":"established","at":197,"refs":["T549","T21"],"text":"Lantern Pear T549 established at (5,6); mother T21.","id":"E131","step":1911,"when":"Year 6, Fruitfall day 64"}
+{"type":"established","at":79,"refs":["T488","T15"],"text":"Lantern Pear T488 established at (15,2); mother T15.","id":"E132","step":1913,"when":"Year 6, Fruitfall day 66"}
+{"type":"established","at":46,"refs":["T364","T15"],"text":"Lantern Pear T364 established at (14,1); mother T15.","id":"E133","step":1914,"when":"Year 6, Fruitfall day 67"}
+{"type":"established","at":161,"refs":["T499","T18"],"text":"Lantern Pear T499 established at (1,5); mother T18.","id":"E134","step":1914,"when":"Year 6, Fruitfall day 67"}
+{"type":"established","at":80,"refs":["T482","T15"],"text":"Lantern Pear T482 established at (16,2); mother T15.","id":"E135","step":1915,"when":"Year 6, Fruitfall day 68"}
+{"type":"established","at":165,"refs":["T587","T21"],"text":"Lantern Pear T587 established at (5,5); mother T21.","id":"E136","step":1915,"when":"Year 6, Fruitfall day 68"}
+{"type":"established","at":111,"refs":["T513","T15"],"text":"Lantern Pear T513 established at (15,3); mother T15.","id":"E137","step":1919,"when":"Year 6, Fruitfall day 72"}
+{"type":"established","at":140,"refs":["T382","T14"],"text":"Lantern Pear T382 established at (12,4); mother Old Lantern.","id":"E138","step":1922,"when":"Year 6, Fruitfall day 75"}
+{"type":"established","at":47,"refs":["T514","T15"],"text":"Lantern Pear T514 established at (15,1); mother T15.","id":"E139","step":1923,"when":"Year 6, Fruitfall day 76"}
+{"type":"established","at":146,"refs":["T575","T17"],"text":"Lantern Pear T575 established at (18,4); mother T17.","id":"E140","step":1925,"when":"Year 6, Fruitfall day 78"}
+{"type":"established","at":116,"refs":["T625","T17"],"text":"Lantern Pear T625 established at (20,3); mother T17.","id":"E141","step":1926,"when":"Year 6, Fruitfall day 79"}
+{"type":"established","at":366,"refs":["T591","T5"],"text":"Bellfruit T591 established at (14,11); mother T5.","id":"E142","step":1929,"when":"Year 6, Fruitfall day 82"}

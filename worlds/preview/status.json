@@ -4,10 +4,10 @@
   "kind": "test",
   "engineVersion": "0.1.1",
   "foundedAt": "2026-09-29T19:00:00Z",
-  "step": 1906,
-  "orchardTime": "Year 6, Fruitfall day 59",
-  "stateCoversUpTo": "2026-11-08T12:00:00.000Z",
-  "savedAt": "2026-11-08T12:12:31.557Z",
-  "snapshotId": "preview@1906-8c77a0173b325f37",
+  "step": 1958,
+  "orchardTime": "Year 6, Still day 27",
+  "stateCoversUpTo": "2026-11-09T14:00:00.000Z",
+  "savedAt": "2026-11-09T14:22:14.708Z",
+  "snapshotId": "preview@1958-04e4aa43a5d88603",
   "savedBy": "scheduled GitHub job"
 }
