@@ -37,3 +37,4 @@
 {"type":"established","at":146,"refs":["T575","T17"],"text":"Lantern Pear T575 established at (18,4); mother T17.","id":"E140","step":1925,"when":"Year 6, Fruitfall day 78"}
 {"type":"established","at":116,"refs":["T625","T17"],"text":"Lantern Pear T625 established at (20,3); mother T17.","id":"E141","step":1926,"when":"Year 6, Fruitfall day 79"}
 {"type":"established","at":366,"refs":["T591","T5"],"text":"Bellfruit T591 established at (14,11); mother T5.","id":"E142","step":1929,"when":"Year 6, Fruitfall day 82"}
+{"type":"weather","kind":"longRain","text":"Prolonged rain began (11 days).","id":"E143","step":1994,"when":"Year 6, Still day 63"}
