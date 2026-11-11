@@ -1,0 +1,8 @@
+{"type":"cohort","at":527,"refs":["S7"],"text":"Founding seed cohort S7 (Bellfruit, (15,16)) has no viable seeds left.","id":"E144","step":2024,"when":"Year 7, Thaw day 9"}
+{"type":"established","at":211,"refs":["T648","T3"],"text":"Bellfruit T648 established at (19,6); mother T3.","id":"E145","step":2041,"when":"Year 7, Thaw day 26"}
+{"type":"dormancy","at":48,"refs":["S5158","T15"],"text":"Lantern Pear seeds from T15 began germinating at (16,1) after 2 winters underground (cohort S5158).","id":"E146","step":2042,"when":"Year 7, Thaw day 27"}
+{"type":"dormancy","at":271,"refs":["S2276","T2"],"text":"Bellfruit seeds from T2 began germinating at (15,8) after 4 winters underground (cohort S2276).","id":"E147","step":2043,"when":"Year 7, Thaw day 28"}
+{"type":"dormancy","at":336,"refs":["S2574","T3"],"text":"Bellfruit seeds from T3 began germinating at (16,10) after 4 winters underground (cohort S2574).","id":"E148","step":2043,"when":"Year 7, Thaw day 28"}
+{"type":"dormancy","at":161,"refs":["S5332","T18"],"text":"Lantern Pear seeds from T18 began germinating at (1,5) after 2 winters underground (cohort S5332).","id":"E149","step":2043,"when":"Year 7, Thaw day 28"}
+{"type":"dormancy","at":335,"refs":["S2426","T5"],"text":"Bellfruit seeds from T5 began germinating at (15,10) after 4 winters underground (cohort S2426).","id":"E150","step":2044,"when":"Year 7, Thaw day 29"}
+{"type":"dormancy","at":334,"refs":["S6049","T5"],"text":"Bellfruit seeds from T5 began germinating at (14,10) after 2 winters underground (cohort S6049).","id":"E151","step":2044,"when":"Year 7, Thaw day 29"}
