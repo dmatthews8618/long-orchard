@@ -20,3 +20,10 @@
 {"type":"dormancy","at":366,"refs":["S4184","T5"],"text":"Bellfruit seeds from T5 began germinating at (14,11) after 3 winters underground (cohort S4184).","id":"E163","step":2097,"when":"Year 7, Thaw day 82"}
 {"type":"dormancy","at":139,"refs":["S5571","T14"],"text":"Lantern Pear seeds from Old Lantern began germinating at (11,4) after 2 winters underground (cohort S5571).","id":"E164","step":2097,"when":"Year 7, Thaw day 82"}
 {"type":"dormancy","at":129,"refs":["S5480","T18"],"text":"Lantern Pear seeds from T18 began germinating at (1,4) after 2 winters underground (cohort S5480).","id":"E165","step":2100,"when":"Year 7, Blossom day 1"}
+{"type":"dormancy","at":367,"refs":["S2376","T5"],"text":"Bellfruit seeds from T5 began germinating at (15,11) after 4 winters underground (cohort S2376).","id":"E166","step":2101,"when":"Year 7, Blossom day 2"}
+{"type":"dormancy","at":173,"refs":["S5125","T14"],"text":"Lantern Pear seeds from Old Lantern began germinating at (13,5) after 2 winters underground (cohort S5125).","id":"E167","step":2104,"when":"Year 7, Blossom day 5"}
+{"type":"dormancy","at":274,"refs":["S4650","T3"],"text":"Bellfruit seeds from T3 began germinating at (18,8) after 3 winters underground (cohort S4650).","id":"E168","step":2108,"when":"Year 7, Blossom day 9"}
+{"type":"dormancy","at":367,"refs":["S5611","T5"],"text":"Bellfruit seeds from T5 began germinating at (15,11) after 2 winters underground (cohort S5611).","id":"E169","step":2111,"when":"Year 7, Blossom day 12"}
+{"type":"dormancy","at":146,"refs":["S5241","T17"],"text":"Lantern Pear seeds from T17 began germinating at (18,4) after 2 winters underground (cohort S5241).","id":"E170","step":2113,"when":"Year 7, Blossom day 14"}
+{"type":"cohort","at":403,"refs":["S4"],"text":"Founding seed cohort S4 (Bellfruit, (19,12)) has no viable seeds left.","id":"E171","step":2113,"when":"Year 7, Blossom day 14"}
+{"type":"weather","kind":"warmSpell","text":"Warm spell began (7 days).","id":"E172","step":2121,"when":"Year 7, Blossom day 22"}
