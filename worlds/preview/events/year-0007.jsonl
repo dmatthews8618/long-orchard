@@ -27,3 +27,26 @@
 {"type":"dormancy","at":146,"refs":["S5241","T17"],"text":"Lantern Pear seeds from T17 began germinating at (18,4) after 2 winters underground (cohort S5241).","id":"E170","step":2113,"when":"Year 7, Blossom day 14"}
 {"type":"cohort","at":403,"refs":["S4"],"text":"Founding seed cohort S4 (Bellfruit, (19,12)) has no viable seeds left.","id":"E171","step":2113,"when":"Year 7, Blossom day 14"}
 {"type":"weather","kind":"warmSpell","text":"Warm spell began (7 days).","id":"E172","step":2121,"when":"Year 7, Blossom day 22"}
+{"type":"established","at":110,"refs":["T450","T15"],"text":"Lantern Pear T450 established at (14,3); mother T15.","id":"E173","step":2155,"when":"Year 7, Blossom day 56"}
+{"type":"established","at":165,"refs":["T618","T21"],"text":"Lantern Pear T618 established at (5,5); mother T21.","id":"E174","step":2156,"when":"Year 7, Blossom day 57"}
+{"type":"established","at":47,"refs":["T485","T15"],"text":"Lantern Pear T485 established at (15,1); mother T15.","id":"E175","step":2164,"when":"Year 7, Blossom day 65"}
+{"type":"established","at":80,"refs":["T468","T15"],"text":"Lantern Pear T468 established at (16,2); mother T15.","id":"E176","step":2167,"when":"Year 7, Blossom day 68"}
+{"type":"established","at":290,"refs":["T496","T19"],"text":"Lantern Pear T496 established at (2,9); mother T19.","id":"E177","step":2167,"when":"Year 7, Blossom day 68"}
+{"type":"established","at":47,"refs":["T515","T15"],"text":"Lantern Pear T515 established at (15,1); mother T15.","id":"E178","step":2167,"when":"Year 7, Blossom day 68"}
+{"type":"established","at":194,"refs":["T418","T18"],"text":"Lantern Pear T418 established at (2,6); mother T18.","id":"E179","step":2169,"when":"Year 7, Blossom day 70"}
+{"type":"established","at":78,"refs":["T531","T15"],"text":"Lantern Pear T531 established at (14,2); mother T15.","id":"E180","step":2169,"when":"Year 7, Blossom day 70"}
+{"type":"established","at":47,"refs":["T532","T15"],"text":"Lantern Pear T532 established at (15,1); mother T15.","id":"E181","step":2169,"when":"Year 7, Blossom day 70"}
+{"type":"established","at":112,"refs":["T449","T15"],"text":"Lantern Pear T449 established at (16,3); mother T15.","id":"E182","step":2172,"when":"Year 7, Blossom day 73"}
+{"type":"established","at":110,"refs":["T590","T15"],"text":"Lantern Pear T590 established at (14,3); mother T15.","id":"E183","step":2174,"when":"Year 7, Blossom day 75"}
+{"type":"established","at":46,"refs":["T472","T15"],"text":"Lantern Pear T472 established at (14,1); mother T15.","id":"E184","step":2176,"when":"Year 7, Blossom day 77"}
+{"type":"established","at":48,"refs":["T311","T15"],"text":"Lantern Pear T311 established at (16,1); mother T15.","id":"E185","step":2177,"when":"Year 7, Blossom day 78"}
+{"type":"established","at":78,"refs":["T556","T15"],"text":"Lantern Pear T556 established at (14,2); mother T15.","id":"E186","step":2178,"when":"Year 7, Blossom day 79"}
+{"type":"established","at":78,"refs":["T594","T15"],"text":"Lantern Pear T594 established at (14,2); mother T15.","id":"E187","step":2178,"when":"Year 7, Blossom day 79"}
+{"type":"established","at":78,"refs":["T435","T15"],"text":"Lantern Pear T435 established at (14,2); mother T15.","id":"E188","step":2180,"when":"Year 7, Blossom day 81"}
+{"type":"established","at":111,"refs":["T463","T15"],"text":"Lantern Pear T463 established at (15,3); mother T15.","id":"E189","step":2180,"when":"Year 7, Blossom day 81"}
+{"type":"established","at":168,"refs":["T350","T16"],"text":"Lantern Pear T350 established at (8,5); mother T16.","id":"E190","step":2181,"when":"Year 7, Blossom day 82"}
+{"type":"weather","kind":"drySpell","text":"Dry spell began (13 days).","id":"E191","step":2182,"when":"Year 7, Blossom day 83"}
+{"type":"established","at":80,"refs":["T465","T15"],"text":"Lantern Pear T465 established at (16,2); mother T15.","id":"E192","step":2184,"when":"Year 7, Fruitfall day 1"}
+{"type":"established","at":172,"refs":["T416","T14"],"text":"Lantern Pear T416 established at (12,5); mother Old Lantern.","id":"E193","step":2185,"when":"Year 7, Fruitfall day 2"}
+{"type":"established","at":167,"refs":["T341","T16"],"text":"Lantern Pear T341 established at (7,5); mother T16.","id":"E194","step":2188,"when":"Year 7, Fruitfall day 5"}
+{"type":"established","at":161,"refs":["T454","T18"],"text":"Lantern Pear T454 established at (1,5); mother T18.","id":"E195","step":2188,"when":"Year 7, Fruitfall day 5"}
