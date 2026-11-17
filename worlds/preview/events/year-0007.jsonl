@@ -68,3 +68,6 @@
 {"type":"established","at":47,"refs":["T521","T15"],"text":"Lantern Pear T521 established at (15,1); mother T15.","id":"E211","step":2248,"when":"Year 7, Fruitfall day 65"}
 {"type":"established","at":147,"refs":["T693","T17"],"text":"Lantern Pear T693 established at (19,4); mother T17.","id":"E212","step":2255,"when":"Year 7, Fruitfall day 72"}
 {"type":"weather","kind":"longRain","text":"Prolonged rain began (10 days).","id":"E213","step":2289,"when":"Year 7, Still day 22"}
+{"type":"fall","at":390,"cells":[390,423],"refs":["T51"],"text":"Bellfruit T51 fell; 5 kg of wood now lies across 2 patches from (6,12).","id":"E214","step":2294,"when":"Year 7, Still day 27"}
+{"type":"weather","kind":"longRain","text":"Prolonged rain began (6 days).","id":"E215","step":2311,"when":"Year 7, Still day 44"}
+{"type":"weather","kind":"windstorm","text":"Windstorm began (2 days).","id":"E216","step":2340,"when":"Year 7, Still day 73"}
