@@ -1,0 +1,5 @@
+{"type":"weather","kind":"windstorm","text":"Windstorm began (1 day).","id":"E218","step":2359,"when":"Year 8, Thaw day 8"}
+{"type":"dormancy","at":272,"refs":["S2373","T2"],"text":"Bellfruit seeds from T2 began germinating at (16,8) after 5 winters underground (cohort S2373).","id":"E219","step":2373,"when":"Year 8, Thaw day 22"}
+{"type":"dormancy","at":162,"refs":["S5161","T18"],"text":"Lantern Pear seeds from T18 began germinating at (2,5) after 3 winters underground (cohort S5161).","id":"E220","step":2373,"when":"Year 8, Thaw day 22"}
+{"type":"dormancy","at":165,"refs":["S7127","T21"],"text":"Lantern Pear seeds from T21 began germinating at (5,5) after 2 winters underground (cohort S7127).","id":"E221","step":2373,"when":"Year 8, Thaw day 22"}
+{"type":"dormancy","at":193,"refs":["S7154","T18"],"text":"Lantern Pear seeds from T18 began germinating at (1,6) after 2 winters underground (cohort S7154).","id":"E222","step":2373,"when":"Year 8, Thaw day 22"}
