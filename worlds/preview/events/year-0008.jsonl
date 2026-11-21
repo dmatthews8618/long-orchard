@@ -21,3 +21,12 @@
 {"type":"weather","kind":"warmSpell","text":"Warm spell began (6 days).","id":"E238","step":2466,"when":"Year 8, Blossom day 31"}
 {"type":"established","at":83,"refs":["T886","T17"],"text":"Lantern Pear T886 established at (19,2); mother T17.","id":"E239","step":2479,"when":"Year 8, Blossom day 44"}
 {"type":"established","at":83,"refs":["T861","T17"],"text":"Lantern Pear T861 established at (19,2); mother T17.","id":"E240","step":2484,"when":"Year 8, Blossom day 49"}
+{"type":"established","at":198,"refs":["T640","T21"],"text":"Lantern Pear T640 established at (6,6); mother T21.","id":"E241","step":2499,"when":"Year 8, Blossom day 64"}
+{"type":"established","at":162,"refs":["T458","T18"],"text":"Lantern Pear T458 established at (2,5); mother T18.","id":"E242","step":2500,"when":"Year 8, Blossom day 65"}
+{"type":"established","at":131,"refs":["T604","T18"],"text":"Lantern Pear T604 established at (3,4); mother T18.","id":"E243","step":2508,"when":"Year 8, Blossom day 73"}
+{"type":"established","at":140,"refs":["T461","T14"],"text":"Lantern Pear T461 established at (12,4); mother Old Lantern.","id":"E244","step":2517,"when":"Year 8, Blossom day 82"}
+{"type":"established","at":291,"refs":["T743","T19"],"text":"Lantern Pear T743 established at (3,9); mother T19.","id":"E245","step":2519,"when":"Year 8, Blossom day 84"}
+{"type":"established","at":103,"refs":["T508","T16"],"text":"Lantern Pear T508 established at (7,3); mother T16.","id":"E246","step":2525,"when":"Year 8, Fruitfall day 6"}
+{"type":"established","at":163,"refs":["T599","T18"],"text":"Lantern Pear T599 established at (3,5); mother T18.","id":"E247","step":2526,"when":"Year 8, Fruitfall day 7"}
+{"type":"established","at":547,"refs":["T714","T20"],"text":"Lantern Pear T714 established at (3,17); mother T20.","id":"E248","step":2527,"when":"Year 8, Fruitfall day 8"}
+{"type":"established","at":136,"refs":["T483","T16"],"text":"Lantern Pear T483 established at (8,4); mother T16.","id":"E249","step":2529,"when":"Year 8, Fruitfall day 10"}
