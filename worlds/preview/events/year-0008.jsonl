@@ -50,3 +50,9 @@
 {"type":"established","at":258,"refs":["T691","T19"],"text":"Lantern Pear T691 established at (2,8); mother T19.","id":"E267","step":2575,"when":"Year 8, Fruitfall day 56"}
 {"type":"established","at":197,"refs":["T863","T21"],"text":"Lantern Pear T863 established at (5,6); mother T21.","id":"E268","step":2576,"when":"Year 8, Fruitfall day 57"}
 {"type":"established","at":611,"refs":["T706","T20"],"text":"Lantern Pear T706 established at (3,19); mother T20.","id":"E269","step":2577,"when":"Year 8, Fruitfall day 58"}
+{"type":"established","at":366,"refs":["T727","T5"],"text":"Bellfruit T727 established at (14,11); mother T5.","id":"E270","step":2586,"when":"Year 8, Fruitfall day 67"}
+{"type":"established","at":196,"refs":["T898","T21"],"text":"Lantern Pear T898 established at (4,6); mother T21.","id":"E271","step":2591,"when":"Year 8, Fruitfall day 72"}
+{"type":"weather","kind":"drySpell","text":"Dry spell began (17 days).","id":"E272","step":2599,"when":"Year 8, Fruitfall day 80"}
+{"type":"established","at":79,"refs":["T725","T15"],"text":"Lantern Pear T725 established at (15,2); mother T15.","id":"E273","step":2599,"when":"Year 8, Fruitfall day 80"}
+{"type":"established","at":398,"refs":["T817","T5"],"text":"Bellfruit T817 established at (14,12); mother T5.","id":"E274","step":2599,"when":"Year 8, Fruitfall day 80"}
+{"type":"weather","kind":"windstorm","text":"Windstorm began (1 day).","id":"E275","step":2616,"when":"Year 8, Still day 13"}
