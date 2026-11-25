@@ -56,3 +56,4 @@
 {"type":"established","at":79,"refs":["T725","T15"],"text":"Lantern Pear T725 established at (15,2); mother T15.","id":"E273","step":2599,"when":"Year 8, Fruitfall day 80"}
 {"type":"established","at":398,"refs":["T817","T5"],"text":"Bellfruit T817 established at (14,12); mother T5.","id":"E274","step":2599,"when":"Year 8, Fruitfall day 80"}
 {"type":"weather","kind":"windstorm","text":"Windstorm began (1 day).","id":"E275","step":2616,"when":"Year 8, Still day 13"}
+{"type":"low","text":"Mossback Snail had a lean year: peak 523 against 1388 the year before.","id":"E276","step":2687,"when":"Year 8, Still day 84"}
